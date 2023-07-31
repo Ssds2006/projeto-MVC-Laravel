@@ -1,0 +1,108 @@
+/* Estilo personalizado para o menu */
+.custom-navbar {
+    background-color: #ffffff; /* Cor de fundo cinza mais leve */
+    font-size: 16px; /* Tamanho da fonte 16 */
+}
+
+.custom-navbar .nav-link {
+    color: black !important; /* Cor das letras preta */
+    font-size: 16px; /* Tamanho da fonte 16 */
+}
+
+.custom-navbar .nav-link:hover {
+    background-color: green; /* Cor de fundo verde no hover */
+    color: black !important; /* Cor das letras preta no hover */
+    font-size: 14px; /* Tamanho da fonte aumentado para 14px no hover */
+}
+
+/* Estilo para o conteúdo em destaque */
+.conteudo-destaque {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.esquerda {
+    flex: 1;
+    padding-right: 20px;
+    color: black; /* Cor das letras preta */
+}
+
+.direita {
+    flex: 1;
+    padding-left: 20px;
+    color: black; /* Cor das letras preta */
+}
+
+.informacoes h1 {
+    color: black; /* Cor das letras preta */
+    font-size: 24px;
+}
+
+.informacoes p {
+    color: black; /* Cor das letras preta */
+    font-size: 16px;
+}
+
+.chamada {
+    display: flex;
+    align-items: center;
+    color: black; /* Cor das letras preta */
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.chamada img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.video img {
+    width: 100%;
+}
+
+.direita h1 {
+    color: black; /* Cor das letras preta */
+    font-size: 24px;
+}
+
+.direita p {
+    color: black; /* Cor das letras preta */
+    font-size: 16px;
+}
+
+.direita input,
+.direita textarea,
+.direita select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid black; /* Cor da borda preta */
+    background-color: transparent;
+    color: black; /* Cor das letras preta */
+}
+
+.direita button {
+    background-color: transparent;
+    border: 2px solid black; /* Cor da borda preta */
+    color: black; /* Cor das letras preta */
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.direita button:hover {
+    background-color: black; /* Cor de fundo preta */
+    color: white; /* Cor das letras branca */
+}
+
+/* Gradiente de fundo da página */
+.gradiente-fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffffff, #c1c0c0);
+    z-index: -1;
+}
