@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LogAcessoMiddleware;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,28 +41,54 @@ Route::get('/', function () {
 //ROTAS SITE
 //NOMES DADOS PARA AS ROTAS
 Route::get('/principal',[PrincipalController::class,'principal'])->name('site.index');
+
 Route::get('/contato',[ContatoController::class, 'contato'])->name('site.contato');
 Route::post('/contato',[ContatoController::class, 'salvar'])->name('site.contato');
+
 Route::get('/sobre-nos',[SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
-Route::get('/login',[LoginController::class, 'login'])->name('site.login');
+
+Route::get('/login/{erro?}',[LoginController::class, 'index'])->name('site.login');
 Route::post('/login',[LoginController::class, 'autenticar'])->name('site.login');
+
 Route::get('/cadastro', [CadastroController::class, 'exibirFormulario'])->name('site.cadastro.formulario');
 
 Route::post('/cadastro', [CadastroController::class, 'cadastrar'])->name('site.cadastro.salvar');
 Route::get('/cadastro/sucesso', [CadastroController::class, 'cadastroSucesso'])->name('site.cadastro.sucesso');
 
+Route::middleware('autenticacao:padrao,visitante,p3,p4')->prefix('/app')->group(function (){
+    //home
+    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+    Route::get('/sair',[LoginController::class, 'sair'])->name('app.sair');
 
+    //cliente
+    Route::get('/cliente',[ClientesController::class, 'index'])->name('app.cliente');
+    //Route::get('/clientes',function (){return 'Clientes';})->name('app.clientes');
+
+    //fornecedor
+    Route::get('/fornecedor',[FornecedorController::class, 'index'])->name('app.fornecedor');
+    Route::get('/fornecedor/listar',[ForecedorController::class, 'listar'])->name('app.fornecedor.listar');
+    Route::get('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+    Route::post('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+
+    //dividas
+    //Route::get('/dividas/{cliente}', [DividasController::class, 'index'])->name('dividas.index');
+    Route::get('/divida',[DividasController::class, 'index'])->name('app.divida');
+
+    //Route::get('/home',[HomeController::class, 'index'])->name('app.home');
+
+
+});
 
 
 
 //GRUPO DE ROTAS
 //NOMES DADOS PARA AS ROTAS
-Route::prefix('/app')->group(function (){
-    Route::resource('/clientes', ClientesController::class)
-        ->except(['show']);
-    Route::get('/fornecedores',[FornecedorController::class,'index'])->name('app.fornecedores');
-    Route::get('/dividas',function (){return 'dividas';})->name('app.dividas');
-});
+//Route::middleware('autenticacao:padrao,visitante,p3,p4')->prefix('/app')->group(function (){
+//   // Route::resource('/clientes', ClientesController::class)->except(['show']);
+//    Route::get('/clientes',function (){return 'Clientes';})->name('app.clientes');
+//    Route::get('/fornecedores',[FornecedorController::class,'index'])->name('app.fornecedores');
+//    Route::get('/dividas',function (){return 'dividas';})->name('app.dividas');
+//});
 
 ////envio de rota com parametro obrigatório
 //Route::get('contato/{nome}/{categoria}/{assunto}/{mensagem}', function (string $nome, string $categoria, string $assunto, string $mensagem)
@@ -89,7 +116,7 @@ Route::prefix('/app')->group(function (){
 //Route::delete('/clientes/destroy/{cliente}',[\App\Http\Controllers\ClientesController::class,'destroy'])-> name('clientes.destroy');
 //Route::get('/clientes/{cliente}/dividas',[DividasController::class,'index'])->name('dividas.index');
 
-Route::get('/dividas/{cliente}', [DividasController::class, 'index'])->name('dividas.index');
+//Route::get('/dividas/{cliente}', [DividasController::class, 'index'])->name('dividas.index');
 
 //REDIRECIONAMENTO DE ROTA
 //Route::get('/rota1',function (){
@@ -107,6 +134,6 @@ Route::get('/dividas/{cliente}', [DividasController::class, 'index'])->name('div
 //})->name('site.rota2');
 
 //ROTA DE FALLBACK
-Route::fallback(function (){
-   echo 'A rota acessada não existe. <a href="'.route('site.index').'">clique aqui</a> para voltar a página principal';
-});
+//Route::fallback(function (){
+//   echo 'A rota acessada não existe. <a href="'.route('site.index').'">clique aqui</a> para voltar a página principal';
+//});

@@ -11,13 +11,17 @@ use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
-    public function index(Request $request)
-    {
-        $clientes = Cliente::all();
-        $mensagemSucesso = $request->session()->get('mensagem.sucesso');
-        //$request->session()->forget('mensagem.sucesso');
+//    public function index(Request $request)
+//    {
+//        $clientes = Cliente::all();
+//        $mensagemSucesso = $request->session()->get('mensagem.sucesso');
+//        //$request->session()->forget('mensagem.sucesso');
+//
+//        return view('app.clientes')->with('clientes',$clientes)->with('mensagemSucesso',$mensagemSucesso);
+//    }
 
-        return view('clientes.index')->with('clientes',$clientes)->with('mensagemSucesso',$mensagemSucesso);
+    public function index(){
+        return view('app.cliente');
     }
 
     public function create()

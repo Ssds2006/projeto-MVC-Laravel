@@ -7,7 +7,7 @@
         <div class="conteudo-destaque">
             <div class="esquerda">
                 <div class="informacoes">
-                    <h1>Quite Aqui</h1>
+                    <h1>Bem vindo @if(Auth::user()) {{ Auth::user()->name }} @endif ao Quite Aqui</h1>
                     <p>Temos a solução para sua cobrança.</p>
                     <div class="chamada">
                         <img src="{{ asset('/img/check.png') }}">

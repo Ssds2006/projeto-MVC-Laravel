@@ -33,7 +33,7 @@
 </nav>
 
 <div class="container mt-4">
-    <h2>Fornecedor - Adicionar</h2>
+    <h2>Fornecedor - Listar</h2>
 
     <!-- Novo menu abaixo do formulário -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light mt-4">
@@ -51,25 +51,34 @@
         </div>
     </nav>
 
-    <form method="post" action="{{ route('app.fornecedor.adicionar') }}" id="fornecedorForm">
-        @csrf
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input name="nome" type="text" value="{{ old('nome') }}" placeholder="Nome" class="form-control" id="nome" required>
-            {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+    <div class="container">
+        <div class="row">
+            <table class="col">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>UF</th>
+                    <th>E-mail</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                </thead>
+                <tbody>
+                    @foreach( $fornecedores as $fornecedor )
+                        <tr>
+                            <td>{{ $fornecedor->nome }}</td>
+                            <td>{{ $fornecedor->uf }}</td>
+                            <td>{{ $fornecedor->email }}</td>
+                            <td>Excluir</td>
+                            <td>Editar</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-        <div class="form-group">
-            <label for="uf">UF:</label>
-            <input name="uf" type="text" value="{{ old('uf') }}" placeholder="UF" class="form-control" id="uf" required>
-            {{ $errors->has('uf') ? $errors->first('uf') : '' }}
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input name="email" type="email" value="{{ old('email') }}" placeholder="E-mail" class="form-control" id="email" required>
-            {{ $errors->has('email') ? $errors->first('email') : '' }}
-        </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-    </form>
+    </div>
+
 </div>
 
 
@@ -84,3 +93,4 @@
 
 </body>
 </html>
+

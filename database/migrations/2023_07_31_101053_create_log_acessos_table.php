@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('log_acessos', function (Blueprint $table) {
             $table->id();
+            $table->string('log',200);
             $table->timestamps();
         });
     }
