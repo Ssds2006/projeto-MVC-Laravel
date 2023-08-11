@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientesFormRequest;
 use App\Models\Cliente;
 use App\Models\Divida;
+use App\Http\Requests;
 use http\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,12 +22,13 @@ class ClientesController extends Controller
 //    }
 
     public function index(){
-        return view('app.cliente');
+        $clientes = Cliente::all();
+        return view('app.cliente.index', ['clientes' => $clientes]);
     }
 
     public function create()
     {
-       return view('clientes.create');
+       return view('app.cliente.create');
     }
 
     public function store(Request $request)
@@ -91,22 +93,22 @@ class ClientesController extends Controller
 
         // **** 4º OPÇÃO DE CAPTURAR INFORMAÇÕES **** //
 
-        $cliente = Cliente::create($request->all());
+        $clientes = Cliente::create($request->all());
 
         //Criar as Dividas
-        $numDividas = count($request->input('data_do_debito'));
-        for ($i = 0; $i < $numDividas; $i++) {
-            $dividaData = [
-                'data_do_debito' => $request->input('data_do_debito')[$i],
-                'valor_da_divida' => $request->input('valor_da_divida')[$i],
-                'data_de_vencimento' => $request->input('data_de_vencimento')[$i],
-                'valor_do_acordo' => $request->input('valor_do_acordo')[$i],
-                'fornecedor' => $request->input('fornecedor')[$i],
-                'cliente_id' => $cliente->id, // Associar a dívida ao cliente criado
-            ];
-            $divida = new Divida($dividaData);
-            $cliente->dividas()->save($divida);
-        }
+//        $numDividas = count($request->input('data_do_debito'));
+//        for ($i = 0; $i < $numDividas; $i++) {
+//            $dividaData = [
+//                'data_do_debito' => $request->input('data_do_debito')[$i],
+//                'valor_da_divida' => $request->input('valor_da_divida')[$i],
+//                'data_de_vencimento' => $request->input('data_de_vencimento')[$i],
+//                'valor_do_acordo' => $request->input('valor_do_acordo')[$i],
+//                'fornecedor' => $request->input('fornecedor')[$i],
+//                'cliente_id' => $clientes->id, // Associar a dívida ao cliente criado
+//            ];
+//            $divida = new Divida($dividaData);
+//            $clientes->dividas()->save($divida);
+//        }
 
 //            Explicação:
 //              No formulário, mantivemos os campos de dívida como arrays,
@@ -126,8 +128,8 @@ class ClientesController extends Controller
         //return redirect('/clientes');
         //return redirect(route('clientes.index'));
         //return redirect()->route('clientes.index');
-        return to_route('clientes.index')
-            ->with('mensagem.sucesso', "Cliente '{$cliente->nome}'cadastrado com sucesso");
+        return to_route('app.cliente.index')
+            ->with('mensagem.sucesso', "Cliente '{$clientes->nome}'cadastrado com sucesso");
 
     }
 
@@ -148,7 +150,7 @@ class ClientesController extends Controller
         $cliente->delete();
         // $request->session()->flash('mensagem.sucesso',"Série '{$cliente->nome}' removida com sucesso");
 
-        return to_route('clientes.index')
+        return to_route('app.cliente.index')
             ->with('mensagem.sucesso',"Cliente '{$cliente->nome}' removida com sucesso");
     }
 
@@ -156,7 +158,7 @@ class ClientesController extends Controller
 
     public function edit(Cliente $cliente)
     {
-        return view('clientes.edit')->with('cliente', $cliente);
+        return view('app.cliente.edit')->with('cliente', $cliente);
     }
 
     public function update(Cliente $cliente, ClientesFormRequest $request)
@@ -167,7 +169,7 @@ class ClientesController extends Controller
         $cliente->fill($request->all());
         $cliente->save();
 
-        return to_route('clientes.index')->with('mensagem.sucesso',"Cliente '{$cliente->nome}' atualizado com sucesso");
+        return to_route('app.cliente.index')->with('mensagem.sucesso',"Cliente '{$cliente->nome}' atualizado com sucesso");
     }
 
 }

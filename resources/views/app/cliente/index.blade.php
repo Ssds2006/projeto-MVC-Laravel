@@ -2,7 +2,7 @@
 
 {{--    <a href="/clientes/criar" class="btn-btn-dark mb-2">Adicionar Clientes</a>--}}
 
-    <a href="{{ route( 'clientes.create') }}" class="btn btn-dark m-3">Adicionar Clientes</a>
+    <a href="{{ route( 'app.cliente.create') }}" class="btn btn-dark m-3">Adicionar Clientes</a>
 
     @isset($mensagemSucesso)
     <div class="alert alert-success">
@@ -61,7 +61,7 @@
 
 {{--    @endforeach--}}
 {{--</ul>--}}
-
+    @isset($clientes)
     <ul class="list-group d-flex justify-content-between">
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <table class="table">
@@ -74,14 +74,14 @@
                 @foreach($clientes as $cliente)
                     <tr>
                         <td>
-                            <a href="{{ route('dividas.index',$cliente->id) }}">
+                            <a href="{{ route('app.divida.index',$cliente->id) }}">
                                 {{ $cliente->nome }}
                             </a>
                         </td>
                         <td>{{ $cliente->cpf }}</td>
                         <td>{{ $cliente->telefone }}</td>
                         <td>
-                            <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ route('app.cliente.edit', $cliente->id) }}" class="btn btn-primary btn-sm">
                                 Editar
                             </a>
                             <form action="{{ route('clientes.destroy', $cliente->id) }}" method="post" class="d-inline">
@@ -97,6 +97,7 @@
             </table>
         </li>
     </ul>
+    @endisset
 
 
 </x-layout>

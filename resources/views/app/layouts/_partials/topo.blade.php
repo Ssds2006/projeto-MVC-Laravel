@@ -13,9 +13,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="{{ route('app.home') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('app.cliente') }}">Cliente</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('app.cliente.index') }}">Cliente</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('app.fornecedor') }}">Fornecedor</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('app.divida') }}">Divida</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('app.divida.index') }}">Divida</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('app.sair') }}">Sair</a></li>
             </ul>
         </div>

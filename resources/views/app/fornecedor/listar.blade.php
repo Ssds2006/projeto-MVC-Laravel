@@ -3,6 +3,7 @@
 <head>
     <title>Fornecedor - Adicionar</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style_editar.css">
 </head>
 <body>
 
@@ -17,16 +18,12 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('site.index') }}">Principal</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('site.sobrenos') }}">Sobre Nós</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('site.contato') }}">Contato</a>
-                </li>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{{ route('app.home') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('app.cliente.index') }}">Cliente</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('app.fornecedor') }}">Fornecedor</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('app.divida.index') }}">Divida</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('app.sair') }}">Sair</a></li>
             </ul>
         </div>
     </div>
@@ -41,10 +38,10 @@
             <div class="collapse navbar-collapse" id="fornecedorMenu">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Novo</a>
+                        <a class="nav-link" href="{{ route('app.fornecedor.adicionar') }}">Novo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Consultar</a>
+                        <a class="nav-link" href="{{ route('app.fornecedor') }}">Consultar</a>
                     </li>
                 </ul>
             </div>
@@ -70,12 +67,13 @@
                             <td>{{ $fornecedor->nome }}</td>
                             <td>{{ $fornecedor->uf }}</td>
                             <td>{{ $fornecedor->email }}</td>
-                            <td>Excluir</td>
-                            <td>Editar</td>
+                            <td><a href="{{ route('app.fornecedor.excluir',$fornecedor->id) }}">Excluir</a></td>
+                            <td><a href="{{ route('app.fornecedor.editar',$fornecedor->id) }}">Editar</a></td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+
         </div>
     </div>
 

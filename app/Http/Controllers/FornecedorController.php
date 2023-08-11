@@ -8,24 +8,25 @@ use App\Models\Fornecedor;
 class FornecedorController extends Controller
 {
     public function index(){
-        return view('app.fornecedor');
+        return view('app.fornecedor.index');
     }
 
-    public function listar(Request $request){
+  public function listar(Request $request){
 
-        $fornecedores = Fornecedor::where('nome','like','%'.$request->input('nome').'%')
-            ->where('uf','like','%'.$request->input('uf').'%')
-            ->where('email','like','%'.$request->input('email').'%')
+        $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->input('nome').'%')
+            ->where('uf', 'like', '%'.$request->input('uf').'%')
+            ->where('email', 'like', '%'.$request->input('email').'%')
+            ->whereNull('deleted_at') // Adiciona a condição para considerar apenas registros não excluídos
             ->get();
-        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores ]);
-    }
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
+  }
 
     public function adicionar(Request $request){
 
         $msg = '';
 
         //verifica se o token está vazio
-        if ($request->input('_token') != ''){
+        if ($request->input('_token') != '' && $request->input('id') == ''){
             //validação
             $regras = [
                 'nome' => 'required|min:3|max:40',
@@ -52,6 +53,31 @@ class FornecedorController extends Controller
 
         }
 
+        if($request->input('_token')!='' && $request->input('id') != '') {
+            $fornecedor = Fornecedor::find($request->input('id'));
+            $update = $fornecedor->update($request->all());
+
+
+            if ($update) {
+                $msg = ' Atualização realizada com sucesso';
+            } else {
+                $msg = ' Erro na atualização';
+            }
+            return redirect()->route('app.fornecedor.editar', ['id'=> $request->input('id'), 'msg' => $msg]);
+        }
         return view('app.fornecedor.adicionar', ['msg'=>$msg]);
+    }
+
+    public function editar($id, $msg= ''){
+
+        $fornecedor = Fornecedor::find($id);
+
+        return view ('app.fornecedor.adicionar',['fornecedor' => $fornecedor, 'msg' => $msg]);
+    }
+
+    public function excluir($id){
+        Fornecedor::find($id)->delete();
+
+        return redirect()->route('app.fornecedor.listar');
     }
 }

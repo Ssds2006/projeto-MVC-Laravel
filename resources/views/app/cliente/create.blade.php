@@ -19,7 +19,7 @@
 {{--        <button type="submit" class="btn btn-primary">Cadastrar</button>--}}
 {{--    </form>--}}
 
-    <form action="{{ route('clientes.store') }}" method="post">
+    <form action="{{ route('app.cliente.store') }}" method="post">
         @csrf
 
         <div class="mb-3" >
@@ -129,7 +129,7 @@
 {{--            </div>--}}
 {{--        </div>--}}
 
-        <button type="submit" class="btn btn-secondary">Adicionar Dívida</button>
+{{--        <button type="submit" class="btn btn-secondary">Adicionar Dívida</button>--}}
 
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>

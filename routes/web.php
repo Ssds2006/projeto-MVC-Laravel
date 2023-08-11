@@ -11,6 +11,7 @@ use App\Http\Middleware\LogAcessoMiddleware;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::get('/', function () {
 //Route::get('/clientes',[\App\Http\Controllers\ClientesController::class,'index']);
 //Route::get('/clientes/criar',[\App\Http\Controllers\ClientesController::class,'create']);
 //Route::post('/clientes/salvar',[\App\Http\Controllers\ClientesController::class,'store']);
+
 // --- FORMA ANTIGA DE ROTAS --- //
 //Route::controller(\App\Http\Controllers\ClientesController::class)->group(function (){
 //    Route::get('/clientes','index')->name('clientes.index');
@@ -55,30 +57,81 @@ Route::get('/cadastro', [CadastroController::class, 'exibirFormulario'])->name('
 Route::post('/cadastro', [CadastroController::class, 'cadastrar'])->name('site.cadastro.salvar');
 Route::get('/cadastro/sucesso', [CadastroController::class, 'cadastroSucesso'])->name('site.cadastro.sucesso');
 
-Route::middleware('autenticacao:padrao,visitante,p3,p4')->prefix('/app')->group(function (){
-    //home
-    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
-    Route::get('/sair',[LoginController::class, 'sair'])->name('app.sair');
+//home
+//Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+Route::get('/sair',[LoginController::class, 'sair'])->name('app.sair');
 
-    //cliente
-    Route::get('/cliente',[ClientesController::class, 'index'])->name('app.cliente');
-    //Route::get('/clientes',function (){return 'Clientes';})->name('app.clientes');
+//fornecedor
+Route::get('/fornecedor',[FornecedorController::class, 'index'])->name('app.fornecedor');
+Route::get('/fornecedor/listar',[FornecedorController::class, 'listar'])->name('app.fornecedor.listar');
+Route::post('/fornecedor/listar',[FornecedorController::class, 'listar'])->name('app.fornecedor.listar');
+Route::get('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+Route::post('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+Route::get('/fornecedor/editar/{id}/{msg?}',[FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
+Route::get('/fornecedor/excluir/{id}',[FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
 
-    //fornecedor
-    Route::get('/fornecedor',[FornecedorController::class, 'index'])->name('app.fornecedor');
-    Route::get('/fornecedor/listar',[ForecedorController::class, 'listar'])->name('app.fornecedor.listar');
-    Route::get('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
-    Route::post('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+//divida
 
-    //dividas
-    //Route::get('/dividas/{cliente}', [DividasController::class, 'index'])->name('dividas.index');
-    Route::get('/divida',[DividasController::class, 'index'])->name('app.divida');
+//Route::get('/divida', [DividasController::class, 'index'])->name('app.divida');
+//Route::get('/divida', [DividasController::class, 'index'])->name('app.divida');
+Route::get('/divida',[DividasController::class, 'index'])->name('app.divida.index');
+Route::get('/divida/create',[DividasController::class, 'create'])->name('app.divida.create');
+Route::post('/divida/store',[DividasController::class, 'store'])->name('app.divida.store');
+//Route::get('divida/show/{id}',[DividasController::class, 'show'])->name('app.divida.show');
+Route::get('/divida/show/{divida}', [DividasController::class, 'show'])->name('app.divida.show');
+Route::get('/divida/edit/{divida}', [DividasController::class, 'edit'])->name('app.divida.edit');
+Route::put('/divida/update/{divida}', [DividasController::class, 'update'])->name('app.divida.update');
+Route::delete('/divida/destroy/{divida}', [DividasController::class, 'destroy'])->name('app.divida.destroy');
 
-    //Route::get('/home',[HomeController::class, 'index'])->name('app.home');
+//cliente
+Route::get('/cliente',[ClientesController::class, 'index'])->name('app.cliente.index');
+Route::get('/cliente/create',[ClientesController::class,'create'])->name('app.cliente.create');
+Route::post('/cliente/store',[ClientesController::class, 'store'])->name('app.cliente.store');
+Route::get('/cliente/edit',[ClientesController::class, 'edit'])->name('app.cliente.edit');
+Route::get('/clientes.destroy',[ClientesController::class, 'destroy'])->name('clientes.destroy');
+Route::get('/clientes.update',[ClientesController::class, 'update'])->name('clientes.update');
+//Route::get('/clientes',function (){return 'Clientes';})->name('app.clientes');
+
+
+//Route::middleware('autenticacao:padrao,visitante,p3,p4')->prefix('/app')->group(function (){
+//    //home
+//    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+//    Route::get('/sair',[LoginController::class, 'sair'])->name('app.sair');
+//
+//    //cliente
+//    Route::get('/cliente',[ClientesController::class, 'index'])->name('app.cliente');
+//    //Route::get('/clientes',function (){return 'Clientes';})->name('app.clientes');
+//
+//    //fornecedor
+//    Route::get('/fornecedor',[FornecedorController::class, 'index'])->name('app.fornecedor');
+//    Route::post('/fornecedor/listar',[ForecedorController::class, 'listar'])->name('app.fornecedor.listar');
+//    Route::get('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+//    Route::post('/fornecedor/adicionar',[FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
+//
+//    //dividas
+//    //Route::get('/dividas/{cliente}', [DividasController::class, 'index'])->name('dividas.index');
+//    Route::get('/divida',[DividasController::class, 'index'])->name('app.divida');
+//
+//    //Route::get('/home',[HomeController::class, 'index'])->name('app.home');
+//
+//
+//});
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
 });
 
+require __DIR__.'/auth.php';
 
 
 //GRUPO DE ROTAS

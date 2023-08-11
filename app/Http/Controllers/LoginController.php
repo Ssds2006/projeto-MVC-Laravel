@@ -97,7 +97,8 @@ class LoginController extends Controller
         if (Auth::attempt($credenciais)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('app.home');
+            //return redirect()->intended('app.home');
+            return redirect()->route('app.home');
         }
 
         return back()->withErrors([
@@ -106,6 +107,7 @@ class LoginController extends Controller
     }
 
     public function sair (){
-        echo ' Sair';
+        session_destroy();
+        return redirect()->route('site.index');
     }
 }
