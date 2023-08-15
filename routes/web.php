@@ -88,9 +88,10 @@ Route::delete('/divida/destroy/{divida}', [DividasController::class, 'destroy'])
 Route::get('/cliente',[ClientesController::class, 'index'])->name('app.cliente.index');
 Route::get('/cliente/create',[ClientesController::class,'create'])->name('app.cliente.create');
 Route::post('/cliente/store',[ClientesController::class, 'store'])->name('app.cliente.store');
-Route::get('/cliente/edit',[ClientesController::class, 'edit'])->name('app.cliente.edit');
+Route::get('/clientes/edit/{cliente}',[ClientesController::class, 'edit'])->name('app.cliente.edit');
 Route::get('/clientes.destroy',[ClientesController::class, 'destroy'])->name('clientes.destroy');
-Route::get('/clientes.update',[ClientesController::class, 'update'])->name('clientes.update');
+//Route::put('/clientes/update/{cliente}',[ClientesController::class, 'update'])->name('clientes.update');
+Route::put('/clientes/update/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
 //Route::get('/clientes',function (){return 'Clientes';})->name('app.clientes');
 
 

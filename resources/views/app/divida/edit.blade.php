@@ -10,7 +10,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <!-- Logo ou nome da marca (caso tenha) -->
-        <a class="navbar-brand" href="/">Quite Aqui</a>
+        <a class="navbar-brand" href="/">Vamos Negociar</a>
 
         <!-- Botão para colapsar o menu em dispositivos móveis -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -55,12 +55,12 @@
         @method('PUT')
         <div class="form-group">
             <label for="cliente_id">Código do Cliente:</label>
-            <input name="cliente_id" type="text" value="{{ $divida->cliente_id ?? old('cliente_id') }}" placeholder="Código do Cliente" class="form-control" id="cliente_id" required>
+            <input name="cliente_id" type="text" value="{{ $divida->cliente_id ?? old('cliente_id') }}" placeholder="Código do Cliente" class="form-control" id="cliente_id">
             {{ $errors->has('cliente_id') ? $errors->first('cliente_id') : '' }}
         </div>
         <div class="form-group">
             <label for="fornecedor_id">Fornecedor:</label>
-            <select name="fornecedor_id" class="form-control" id="fornecedor_id" required>
+            <select name="fornecedor_id" class="form-control" id="fornecedor_id">
                 <option value="">-- Selecione o Fornecedor --</option>
                 @foreach($fornecedores as $fornecedor)
                     <option value="{{ $fornecedor->id }}" {{ $divida->fornecedor_id == $fornecedor->id ? 'selected' : '' }}>
@@ -74,27 +74,27 @@
         </div>
         <div class="form-group">
             <label for="data_do_debito">Data do Débito:</label>
-            <input name="data_do_debito" type="date" value="{{ $divida->data_do_debito ?? old('data_do_debito') }}"  class="form-control" id="data_do_debito" required>
+            <input name="data_do_debito" type="date" value="{{ $divida->data_do_debito ?? old('data_do_debito') }}"  class="form-control" id="data_do_debito">
             {{ $errors->has('data_do_debito') ? $errors->first('data_do_debito') : '' }}
         </div>
         <div class="form-group">
             <label for="valor_da_divida">Valor da Divida:</label>
-            <input name="valor_da_divida" type="text" value="{{ $divida->valor_da_divida ?? old('valor_da_divida') }}" placeholder="R$ 0.00" class="form-control" id="valor_da_divida" required>
+            <input name="valor_da_divida" type="text" value="{{ $divida->valor_da_divida ?? old('valor_da_divida') }}" placeholder="R$ 0.00" class="form-control" id="valor_da_divida">
             {{ $errors->has('valor_da_divida') ? $errors->first('valor_da_divida') : '' }}
         </div>
         <div class="form-group">
             <label for="data_de_vencimento">Data de Vencimento:</label>
-            <input name="data_de_vencimento" type="date" value="{{ $divida->data_de_vencimento ?? old('data_de_vencimento') }}"  class="form-control" id="data_de_vencimento" required>
+            <input name="data_de_vencimento" type="date" value="{{ $divida->data_de_vencimento ?? old('data_de_vencimento') }}"  class="form-control" id="data_de_vencimento">
             {{ $errors->has('data_de_vencimento') ? $errors->first('data_de_vencimento') : '' }}
         </div>
         <div class="form-group">
             <label for="valor_do_acordo">Valor do Acordo:</label>
-            <input name="valor_do_acordo" type="text" value="{{ $divida->valor_do_acordo ?? old('valor_do_acordo') }}" placeholder="R$ 0.00" class="form-control" id="valor_do_acordo" required>
+            <input name="valor_do_acordo" type="text" value="{{ $divida->valor_do_acordo ?? old('valor_do_acordo') }}" placeholder="R$ 0.00" class="form-control" id="valor_do_acordo">
             {{ $errors->has('valor_do_acordo') ? $errors->first('valor_do_acordo') : '' }}
         </div>
         <div class="form-group">
             <label for="status">Status:</label><br>
-            <select name="status" class="form-control" id="status" required>
+            <select name="status" class="form-control" id="status">
                 <option>-- Selecione o status --</option>
                 @foreach($statusOptions as $option)
                     <option value="{{ $option }}" {{ $divida->status == $option ? 'selected' : '' }}>

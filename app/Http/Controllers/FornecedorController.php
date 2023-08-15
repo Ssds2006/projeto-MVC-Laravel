@@ -13,7 +13,7 @@ class FornecedorController extends Controller
 
   public function listar(Request $request){
 
-        $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->input('nome').'%')
+        $fornecedores = Fornecedor::with(['dividas'])->where('nome', 'like', '%'.$request->input('nome').'%')
             ->where('uf', 'like', '%'.$request->input('uf').'%')
             ->where('email', 'like', '%'.$request->input('email').'%')
             ->whereNull('deleted_at') // Adiciona a condição para considerar apenas registros não excluídos

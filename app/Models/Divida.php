@@ -23,6 +23,6 @@ class Divida extends Model
 
     public function fornecedor()
     {
-        return $this->belongsTo(Fornecedor::class, 'fornecedor_id'); // 'fornecedor_id' é a chave estrangeira na tabela de dívidas
+        return $this->belongsTo('App\Models\Fornecedor'); // 'fornecedor_id' é a chave estrangeira na tabela de dívidas
     }
 }

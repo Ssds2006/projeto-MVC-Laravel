@@ -10,7 +10,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <!-- Logo ou nome da marca (caso tenha) -->
-        <a class="navbar-brand" href="/">Quite Aqui</a>
+        <a class="navbar-brand" href="/">Vamos Negociar</a>
 
         <!-- Botão para colapsar o menu em dispositivos móveis -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -53,8 +53,10 @@
             <table class="col">
                 <thead>
                 <tr>
+                    <th>ID da Divida</th>
                     <th>Cliente ID</th>
-                    <th>Fornecedor ID</th>
+{{--                    <th>Fornecedor ID</th>--}}
+                    <th>Fornecedor</th>
                     <th>Data do Débito</th>
                     <th>Valor da Dívida</th>
                     <th>Data de Vencimento</th>
@@ -69,8 +71,10 @@
                 <tbody>
                 @foreach( $dividas as $divida )
                     <tr>
+                        <td>{{ $divida->id }}</td>
                         <td>{{ $divida->cliente_id }}</td>
-                        <td>{{ $divida->fornecedor_id }}</td>
+{{--                        <td>{{ $divida->fornecedor_id }}</td>--}}
+                        <td>{{ $divida->fornecedor->nome }}</td>
                         <td>{{ $divida->data_do_debito }}</td>
                         <td>{{ $divida->valor_da_divida }}</td>
                         <td>{{ $divida->data_de_vencimento }}</td>

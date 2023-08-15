@@ -10,7 +10,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <!-- Logo ou nome da marca (caso tenha) -->
-        <a class="navbar-brand" href="/">Quite Aqui</a>
+        <a class="navbar-brand" href="/">Vamos Negociar</a>
 
         <!-- Botão para colapsar o menu em dispositivos móveis -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -69,6 +69,28 @@
                             <td>{{ $fornecedor->email }}</td>
                             <td><a href="{{ route('app.fornecedor.excluir',$fornecedor->id) }}">Excluir</a></td>
                             <td><a href="{{ route('app.fornecedor.editar',$fornecedor->id) }}">Editar</a></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <p style="text-align: center;">Lista de Dividas</p>
+                                <table class="col" >
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Cliente</th>
+                                    </tr>
+
+                                    </thead>
+                                    <tbody>
+                                    @foreach($fornecedor->dividas as $key => $divida )
+                                        <tr>
+                                            <td>{{ $divida->id }}</td>
+                                            <td>{{ $divida->cliente_id }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -9,7 +9,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <!-- Logo ou nome da marca (caso tenha) -->
-        <a class="navbar-brand" href="/">Quite Aqui</a>
+        <a class="navbar-brand" href="/">Vamos Negociar</a>
 
         <!-- Botão para colapsar o menu em dispositivos móveis -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">

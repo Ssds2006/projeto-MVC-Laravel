@@ -9,7 +9,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <!-- Logo ou nome da marca (caso tenha) -->
-        <a class="navbar-brand" href="/">Quite Aqui</a>
+        <a class="navbar-brand" href="/">Vamos Negociar</a>
 
         <!-- Botão para colapsar o menu em dispositivos móveis -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -53,17 +53,17 @@
         @csrf
         <div class="form-group">
             <label for="nome">Nome:</label>
-            <input name="nome" type="text" value="{{ $fornecedor->nome ?? old('nome') }}" placeholder="Nome" class="form-control" id="nome" required>
+            <input name="nome" type="text" value="{{ $fornecedor->nome ?? old('nome') }}" placeholder="Nome" class="form-control" id="nome">
             {{ $errors->has('nome') ? $errors->first('nome') : '' }}
         </div>
         <div class="form-group">
             <label for="uf">UF:</label>
-            <input name="uf" type="text" value="{{ $fornecedor->uf ?? old('uf') }}" placeholder="UF" class="form-control" id="uf" required>
+            <input name="uf" type="text" value="{{ $fornecedor->uf ?? old('uf') }}" placeholder="UF" class="form-control" id="uf">
             {{ $errors->has('uf') ? $errors->first('uf') : '' }}
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input name="email" type="email" value="{{ $fornecedor->email ?? old('email') }}" placeholder="E-mail" class="form-control" id="email" required>
+            <input name="email" type="email" value="{{ $fornecedor->email ?? old('email') }}" placeholder="E-mail" class="form-control" id="email">
             {{ $errors->has('email') ? $errors->first('email') : '' }}
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>

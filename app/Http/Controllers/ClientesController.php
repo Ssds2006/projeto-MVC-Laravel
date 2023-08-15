@@ -158,18 +158,27 @@ class ClientesController extends Controller
 
     public function edit(Cliente $cliente)
     {
-        return view('app.cliente.edit')->with('cliente', $cliente);
+        //return view('app.cliente.edit')->with('cliente', $cliente);
+        return view('app.cliente.edit', compact('cliente'));
     }
 
-    public function update(Cliente $cliente, ClientesFormRequest $request)
-    {
-//        $cliente->nome = $request->nome;
-//        $cliente->cpf = $request->cpf;
-//        $cliente->telefone = $request->telefone;
-        $cliente->fill($request->all());
-        $cliente->save();
+//    public function update(Cliente $cliente, ClientesFormRequest $request)
+//    {
+////        $cliente->nome = $request->nome;
+////        $cliente->cpf = $request->cpf;
+////        $cliente->telefone = $request->telefone;
+//        $cliente->fill($request->all());
+//        $cliente->save();
+//
+//        return to_route('app.cliente.index')->with('mensagem.sucesso',"Cliente '{$cliente->nome}' atualizado com sucesso");
+//    }
 
-        return to_route('app.cliente.index')->with('mensagem.sucesso',"Cliente '{$cliente->nome}' atualizado com sucesso");
+    public function update(Request $request, Cliente $cliente)
+    {
+        $cliente->update($request->all());
+
+        return redirect()->route('app.cliente.index')
+            ->with('mensagem.sucesso', "Cliente '{$cliente->nome}' atualizado com sucesso");
     }
 
 }

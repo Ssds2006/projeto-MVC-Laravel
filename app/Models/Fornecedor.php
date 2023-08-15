@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\App;
 
 class Fornecedor extends Model
 {
@@ -15,5 +16,6 @@ class Fornecedor extends Model
     public function dividas()
     {
         return $this->hasMany(Divida::class, 'fornecedor_id'); // 'fornecedor_id' é a chave estrangeira na tabela de dívidas
+        //return $this->hasMany('App\Models\Fornecedor');
     }
 }
